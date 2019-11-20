@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+</head>
+<body>
+<a-scene>
+    <a-assets>
+        <img id ="sky" src="img/earth_background_01.jpg">
+        <a-asset-item id="spaceship-o" src="obj/Lo_poly_Spaceship_03_by_Liz_Reddington.obj"></a-asset-item>
+        <a-asset-item id="spaceship-m" src="obj/Lo_poly_Spaceship_03_by_Liz_Reddington.mtl"></a-asset-item>
+
+    </a-assets>
+  <a-sky src = "#sky" ></a-sky>
+    <a-entity position = "-3 0 50">
+        <a-camera></a-camera>
+    </a-entity>
+<!--  <a-entity obj-model = "obj: #spaceship-o" position = "0 0 0" scale = "0.5 0.5 0.5"></a-entity> -->
+    <a-obj-model src = "#spaceship-o"></a-obj-model>
+</a-scene>
+</body>
+</html>
