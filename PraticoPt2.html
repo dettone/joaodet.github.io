@@ -3,36 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
 </head>
 <body>
+<script>
+    var sceneEl = document.querySelector('a-scene');
+
+    AFRAME.registerComponent('do-something-once-loaded', {
+        init: function () {
+            // This will be called after the entity has properly attached and loaded.
+            console.log('I am ready!');
+        }
+    });
+</script>
+<script>
+    var posicaox = 0 ;
+    var inimigo;
+    var posicao;
+
+
+    function atualizaCena() {
+        document.createElement('a-entity');
+        inimigo = document.getElementById("nave-inimiga");
+       posicao = inimigo.getAttribute("position");
+      inimigo.setAttribute('position', {x: posicaox, y:0, z:-50});
+        setInterval('atualizaCena()', 100);
+    }
+//window.addEventListener("load",atualizaCena);
+</script>
+
+<script>
+    var lugar = 0;
+    function criarNavinha(){
+        var sceneEl = document.querySelector('a-scene');
+        var el = document.createElement('a-entity');
+        el.setAttribute("obj-model",{obj : '#spaceship-o', mtl:'#spaceship-m'});
+        el.setAttribute("position",{x:lugar, y: 0, z: 0});
+        el.setAttribute("animation",{property: "position", from : "-2 0.5 -2" ,to: "2 0.5 2",loop:"true",  dir :"alternate",dur: "3000",easing: "linear"});
+        sceneEl.appendChild(el);
+    }
+    window.addEventListener("load",criarNavinha);
+</script>
+
 <a-scene>
+    <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
+    <a-box color="red" position="0 0 -50" scale="1 1 1"
+           animation="property: object3D.position.z; to: 10.2; dur: 500; loop: true">>
+    </a-box>
+    <a-box color="red" position="-40 0 -50" scale="1 1 1"
+           animation="property: object3D.position.z; to: 2.2; dur: 500; loop: true">>
+    </a-box>
+    <a-box color="red" position="-60 0 -50" scale="1 1 1"
+           animation="property: object3D.position.z; to: 2.2; dur: 500; loop: true">>
+    </a-box>
     <a-assets>
-        <img id ="sky" src="img/earth_background_01.jpg">
+        <img id="sky" src="img/earth_background_01.jpg">
         <a-asset-item id="spaceship-o" src="obj/model.obj"></a-asset-item>
         <a-asset-item id="spaceship-m" src="obj/materials.mtl"></a-asset-item>
-
     </a-assets>
-    <a-sky src = "#sky" ></a-sky>
+    <a-sky src="#sky"></a-sky>
+    <a-entity id = "nave-inimiga" obj-model="obj: #spaceship-o;mtl:#spaceship-m" position="0 0 -50" rotation="0 -60 0" scale="10 10 10" >
+        <a-animation attribute="rotation" begin="click" repeat="indefinite" td="0 360 0"></a-animation>
+    </a-entity>
+    <a-entity obj-model="obj: #spaceship-o;mtl:#spaceship-m" position="0 0 -50" rotation="0 -60 0" scale="10 10 10">
+        <a-animation attribute="rotation" begin="click" repeat="indefinite" td="0 360 0"></a-animation>
+    </a-entity>
+        <a-entity obj-model="obj: #spaceship-o;mtl:#spaceship-m" position="-40 0 -50" rotation="0 -60 0" scale="10 10 10">
+    </a-entity>
+    <a-entity obj-model="obj: #spaceship-o;mtl:#spaceship-m" position="-60 0 -50" rotation="0 -60 0" scale="10 10 10">
+    </a-entity>
+    <a-entity obj-model="obj: #spaceship-o;mtl:#spaceship-m" position="-80 0 -50" rotation="0 -60 0" scale="10 10 10">
+    </a-entity>
+    <a-entity obj-model="obj: #spaceship-o;mtl  :#spaceship-m" raycaster = "objects: .collidable" position="-100 0 -50" rotation="0 -60 0" scale="10 10 10">
+    </a-entity>
+    <a-camera position="0 0 0">
+        <a-cursor id="cursor" color="#FF0000"/>
 
-    <a-entity obj-model = "obj: #spaceship-o;mtl:#spaceship-m" position = "50 0 0" rotation = "0 180 0" scale ="10 10 10">
-        <a-animation attribute ="rotation" begin = "click" repeat ="indefinite" td = "0 360 0"></a-animation>
-    </a-entity>
-    <a-entity obj-model = "obj: #spaceship-o;mtl:#spaceship-m" position = "120 0 0" rotation = "0 180 0" scale ="10 10 10">
-        <a-animation attribute ="rotation" begin = "click" repeat ="indefinite" td = "0 360 0"></a-animation>
-    </a-entity>
-    <a-entity obj-model = "obj: #spaceship-o;mtl:#spaceship-m" position = "180 0 0" rotation = "0 180 0" scale ="10 10 10"><a-animation attribute ="rotation" begin = "click" repeat ="indefinite" td = "0 360 0"></a-animation>
-    </a-entity>
-    <a-entity obj-model = "obj: #spaceship-o;mtl:#spaceship-m" position = "-30 0 0" rotation = "0 180 0" ><a-animation attribute ="rotation" begin = "click" repeat ="indefinite" td = "0 360 0"></a-animation>
-    </a-entity>
-    <a-entity obj-model = "obj: #spaceship-o;mtl:#spaceship-m" position = "-40 0 0" rotation = "0 180 0"  ><a-animation attribute ="rotation" begin = "click" repeat ="indefinite" td = "0 360 0"></a-animation>
-    </a-entity>
-    <a-entity obj-model = "obj: #spaceship-o;mtl:#spaceship-m" position = "-10 0 0" rotation = "0 180 0" ><a-animation attribute ="rotation" begin = "click" repeat ="indefinite" td = "0 360 0"></a-animation>
-    </a-entity>
-
-    <a-camera position = "0 0 0">
-        <a-cursor color = "#FF0000"/>
     </a-camera>
-
 </a-scene>
 </body>
 </html>

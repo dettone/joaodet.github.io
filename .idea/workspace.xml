@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8a14080-a392-40f4-92f6-0b56d15d79af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PraticoPt2.html" beforeDir="false" afterPath="$PROJECT_DIR$/PraticoPt2.html" afterDir="false" />
     </list>
@@ -19,7 +18,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/ProjetoNutrilight/nutrilight2/nutrilight-api" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -45,7 +44,10 @@
       <updated>1574251489639</updated>
       <workItem from="1574251490795" duration="5240000" />
       <workItem from="1574270577094" duration="685000" />
-      <workItem from="1574288445516" duration="677000" />
+      <workItem from="1574288445516" duration="4552000" />
+      <workItem from="1574371212541" duration="93000" />
+      <workItem from="1574518626979" duration="24263000" />
+      <workItem from="1574681023642" duration="33000" />
     </task>
     <servers />
   </component>
