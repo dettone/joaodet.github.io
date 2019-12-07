@@ -49,7 +49,8 @@ var posicaox = 0 ;
 -->
 
 <a-scene>
-    <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
+
+   <!-- <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
 
     <a-box color="red" position="0 0 -50" scale="1 1 1"
            animation="property: object3D.position.z; to: 10.2; dur: 500; loop: true">>
@@ -60,30 +61,40 @@ var posicaox = 0 ;
     <a-box color="red" position="-60 0 -50" scale="1 1 1"
            animation="property: object3D.position.z; to: 2.2; dur: 500; loop: true">>
     </a-box>
-
+-->
     <a-assets>
         <img id="sky" src="img/earth_background_01.jpg">
         <a-asset-item id="spaceship-o" src="obj/model.obj"></a-asset-item>
         <a-asset-item id="spaceship-m" src="obj/materials.mtl"></a-asset-item>
+        <a-asset-item id="enemy-o" src="obj/Nave-inimiga/model.obj"></a-asset-item>
+        <a-asset-item if="enemy-m" src="obj/Nave-inimiga/materials.mtl"></a-asset-item>
     </a-assets>
 
     <a-sky src="#sky"></a-sky>
-    <a-entity class = "nave-inimiga" obj-model="obj: #spaceship-o;mtl:#spaceship-m" buffer= "false"  position="0 0 -50" rotation="0 -60 0" scale="10 10 10" >
+
+   <!-- <a-entity class = "nave-inimiga" obj-model="obj: #spaceship-o;mtl:#spaceship-m" buffer= "false"  position="0 0 -50" rotation="0 -60 0" scale="10 10 10" >
         <a-animation attribute="rotation" begin="click" repeat="indefinite" td="0 360 0"></a-animation>
     </a-entity>
     <a-entity obj-model="obj: #spaceship-o;mtl:#spaceship-m" position="0 0 -50" rotation="0 -60 0" scale="10 10 10">
         <a-animation attribute="rotation" begin="click" repeat="indefinite" td="0 360 0"></a-animation>
     </a-entity>
-    <a-entity obj-model="obj: #spaceship-o;mtl:#spaceship-m" position="-40 0 -50" rotation="0 -60 0" scale="10 10 10">
+    <a-entity obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl" position="-40 0 -50"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="10 10 10" color="#FF0000">
     </a-entity>
-    <a-entity obj-model="obj: #spaceship-o;mtl:#spaceship-m" position="-60 0 -50" rotation="0 -60 0" scale="10 10 10">
+    <a-entity obj-model="obj: #enemy-o;mtl:#enemy-m"  position="-60 0 -50" rotation="0 -60 0" scale="10 10 10" color="#FF0000">
     </a-entity>
-    <a-entity obj-model="obj: #spaceship-o;mtl:#spaceship-m" position="-80 0 -50" rotation="0 -60 0" scale="10 10 10">
+    <a-entity obj-model="obj:  #enemy-o;mtl:#enemy-m"  position="-80 0 -50" rotation="0 -60 0" scale="10 10 10" color="#FF0000">
     </a-entity>
-    <a-entity obj-model="obj: #spaceship-o;mtl  :#spaceship-m" raycaster = "objects: .collidable" position="-100 0 -50" rotation="0 -60 0" scale="10 10 10">
+    <a-entity obj-model="obj:  #enemy-o;mtl:#enemy-m"  raycaster = "objects: .collidable" position="-100 0 -50" rotation="0 -60 0" scale="10 10 10">
     </a-entity>
-
-    <a-mixin id="enemy" explode="on: hit"></a-mixin>
+    -->
+    <a-entity mixin="cube enemy" geometry="primitive: box" material="color: #167341" obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-23.5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575"  scale="7 7 7"  animation="property: position; to: -15 9 -10 from: -2 9 -10;repeat:indefinite;  dur: 1500; easing: linear; direction: alternative"></a-box>></a-entity>
+    <a-entity mixin="cube enemy"geometry="primitive: box"  material="color: #167341" obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl" position="-16 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
+    <a-entity mixin="cube enemy"  geometry="primitive: box" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-10.5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
+    <a-entity mixin="cube enemy" geometry="primitive: box"  material="color: #167341" obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
+    <a-entity mixin="cube enemy" geometry="primitive: box" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-0 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
+    <a-entity mixin="cube enemy" geometry="primitive: box" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="9 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
+    <a-entity mixin="cube enemy" geometry="primitive: box" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="15.5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
+   <a-mixin id="enemy" explode="on: hit"></a-mixin>
     <a-entity mixin="cube"
               wasd-controls="acceleration: 400; adEnabled: false"
               position="0 -10 -10"
@@ -105,7 +116,7 @@ var posicaox = 0 ;
              geometry="primitive: box; buffer: false; height: 2; width: 0.1; depth: 0.1"
              material="color: yellow;"
              laser-behavior collider></a-mixin>
-    <a-mixin id="enemy" explode="on: hit"></a-mixin>
+   <!-- <a-mixin id="enemy" explode="on: hit"></a-mixin> -->
 </a-assets>
 
     <script>

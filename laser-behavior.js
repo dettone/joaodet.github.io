@@ -9,7 +9,6 @@ AFRAME.registerComponent('laser-behavior', {
     },
 
     tick: function () {
-        console.log("anee");
         var object3D = this.el.object3D;
         object3D.translateY(this.data.speed);
     }
