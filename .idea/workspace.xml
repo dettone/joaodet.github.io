@@ -4,8 +4,12 @@
     <list default="true" id="e8a14080-a392-40f4-92f6-0b56d15d79af" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PraticoPt2.html" beforeDir="false" afterPath="$PROJECT_DIR$/PraticoPt2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laser-behavior.js" beforeDir="false" afterPath="$PROJECT_DIR$/laser-behavior.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/collider.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/explode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/laser-behavior.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spawner.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wasd-controls.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +32,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SpaceInvaders2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -66,7 +70,8 @@
       <workItem from="1575693275927" duration="4829000" />
       <workItem from="1575735304547" duration="4506000" />
       <workItem from="1575741354470" duration="1320000" />
-      <workItem from="1575744061364" duration="9910000" />
+      <workItem from="1575744061364" duration="14179000" />
+      <workItem from="1575771338314" duration="61000" />
     </task>
     <servers />
   </component>

@@ -1,149 +1,92 @@
+<!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <script src="^https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <title>SPACE INVADERS</title>
+    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
     <script src="aframe-v0.9.0.js"></script>
-   <!-- <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script> -->
-    <script src="spawner.js"></script>
-    <script src="laser-behavior.js"></script>
-    <script src="collider.js"></script>
-    <script src="wasd-controls.js"></script>
-    <script src="explode.js"></script>
-</head>
-<body>
+    <script src="js/spawner.js"></script>
+    <script src="js/spawner-enemy.js"></script>
+    <script src="js/laser-behavior.js"></script>
+    <script src="js/laser-behavior-enemy.js"></script>
+    <script src="js/collider.js"></script>
+    <script src="js/explode.js"></script>
+    <script src="js/index.js"></script>
+  </head>
 
-<!--<script>
-var posicaox = 0 ;
-    var inimigo;
-    var posicao;
-
-
-    function atualizaCena() {
-        document.createElement('a-entity');
-        inimigo = document.getElementById("nave-inimiga");
-       posicao = inimigo.getAttribute("position");
-      inimigo.setAttribute('position', {x: posicaox, y:0, z:-50});
-        setInterval('atualizaCena()', 100);
-    }
-//window.addEventListener("load",atualizaCena);
-    </script>
-
-<script>
-    var lugar = 0;
-    var valor = 0;
-    function criarNavinha(){
-        while(valor < 2){
-            var sceneEl = document.querySelector('a-scene');
-            var el = document.createElement('a-entity');
-            el.setAttribute("obj-model",{obj : '#spaceship-o', mtl:'#spaceship-m'});
-            el.setAttribute("position",{x:lugar, y: 0, z: 0});
-            el.setAttribute("animation",{property: "position", from : "-2 0.5 -2" ,to: "2 0.5 2",loop:"true",  dir :"alternate",dur: "3000",easing: "linear"});
-            sceneEl.appendChild(el);
-            Lugar = 100;
-            valor++;
-        }
-    }
-    window.addEventListener("load",criarNavinha);
-</script>
--->
-
-<a-scene>
-
-   <!-- <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
-
-    <a-box color="red" position="0 0 -50" scale="1 1 1"
-           animation="property: object3D.position.z; to: 10.2; dur: 500; loop: true">>
-    </a-box>
-    <a-box color="red" position="-40 0 -50" scale="1 1 1"
-           animation="property: object3D.position.z; to: 2.2; dur: 500; loop: true">>
-    </a-box>
-    <a-box color="red" position="-60 0 -50" scale="1 1 1"
-           animation="property: object3D.position.z; to: 2.2; dur: 500; loop: true">>
-    </a-box>
--->
-    <a-assets>
+  <body>
+    <div class="score" >Score: 0</div>
+	<div class="screen title-screen">
+      <div class="title">Jogo de Navinha</div>
+      <div class="start blink">Clique para começar</div>
+      <div class="instructions">W e S movem a nave e o clique do mouse atira</div>
+    </div>
+     <div class="screen end-screen">
+      <div class="end">Você perdeu!</div>
+    </div>
+    <div class="screen2 end-screen2">
+      <div class="end">Você Ganhou!</div>
+    </div>
+    <a-scene stats="false">
+      <a-assets>
         <img id="sky" src="img/earth_background_01.jpg">
         <a-asset-item id="spaceship-o" src="obj/model.obj"></a-asset-item>
         <a-asset-item id="spaceship-m" src="obj/materials.mtl"></a-asset-item>
         <a-asset-item id="enemy-o" src="obj/Nave-inimiga/model.obj"></a-asset-item>
         <a-asset-item if="enemy-m" src="obj/Nave-inimiga/materials.mtl"></a-asset-item>
-    </a-assets>
+      </a-assets>
+      <a-sky src="#sky"></a-sky>
+      <a-assets>
 
-    <a-sky src="#sky"></a-sky>
 
-   <!-- <a-entity class = "nave-inimiga" obj-model="obj: #spaceship-o;mtl:#spaceship-m" buffer= "false"  position="0 0 -50" rotation="0 -60 0" scale="10 10 10" >
-        <a-animation attribute="rotation" begin="click" repeat="indefinite" td="0 360 0"></a-animation>
-    </a-entity>
-    <a-entity obj-model="obj: #spaceship-o;mtl:#spaceship-m" position="0 0 -50" rotation="0 -60 0" scale="10 10 10">
-        <a-animation attribute="rotation" begin="click" repeat="indefinite" td="0 360 0"></a-animation>
-    </a-entity>
-    <a-entity obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl" position="-40 0 -50"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="10 10 10" color="#FF0000">
-    </a-entity>
-    <a-entity obj-model="obj: #enemy-o;mtl:#enemy-m"  position="-60 0 -50" rotation="0 -60 0" scale="10 10 10" color="#FF0000">
-    </a-entity>
-    <a-entity obj-model="obj:  #enemy-o;mtl:#enemy-m"  position="-80 0 -50" rotation="0 -60 0" scale="10 10 10" color="#FF0000">
-    </a-entity>
-    <a-entity obj-model="obj:  #enemy-o;mtl:#enemy-m"  raycaster = "objects: .collidable" position="-100 0 -50" rotation="0 -60 0" scale="10 10 10">
-    </a-entity>
-    -->
-    <a-entity mixin="cube enemy" geometry="primitive: box" material="color: #167341" obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-23.5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575"  scale="7 7 7"  animation="property: position; to: -15 9 -10 from: -2 9 -10;repeat:indefinite;  dur: 1500; easing: linear; direction: alternative"></a-box>></a-entity>
-    <a-entity mixin="cube enemy"geometry="primitive: box"  material="color: #167341" obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl" position="-16 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
-    <a-entity mixin="cube enemy"  geometry="primitive: box" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-10.5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
-    <a-entity mixin="cube enemy" geometry="primitive: box"  material="color: #167341" obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
-    <a-entity mixin="cube enemy" geometry="primitive: box" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-0 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
-    <a-entity mixin="cube enemy" geometry="primitive: box" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="9 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
-    <a-entity mixin="cube enemy" geometry="primitive: box" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="15.5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7"></a-entity>
-   <a-mixin id="enemy" explode="on: hit"></a-mixin>
-    <a-entity mixin="cube"
-              wasd-controls="acceleration: 400; adEnabled: false"
-              position="0 -10 -10"
-              spawner="mixin: laser; on: mousedown"
-              cursor></a-entity>
+        <a-mixin id="cube"
+                 obj-model="obj: #spaceship-o;mtl:#spaceship-m"
+                 geometry="primitive: triangle; buffer: false; height: 2; width: 2; depth: 2;"
+                 rotation="0 90 90"
+                 scale="10 10 10"
+                 material="color: #167341; roughness: 1.0; metalness: 0.2;"></a-mixin>
+        <a-mixin id="laser"
+                 geometry="primitive: box; buffer: false; height: 2; width: 0.1; depth: 0.1"
+                 material="color: yellow;"
+                 laser-behavior collider></a-mixin>
+        <a-mixin id="enemy" explode="on: hit"></a-mixin>
 
-    <a-entity position="0 0 20">
+        <a-mixin id="laser2"
+                 geometry="primitive: box; buffer: false; height: 2; width: 0.1; depth: 0.1"
+                 material="color: blue;"
+                 laser-behavior-enemy collider></a-mixin>
+
+      </a-assets>
+
+      <a-entity position="0 0 20">
         <a-entity camera="fov: 45"></a-entity>
-    </a-entity>
-<a-assets>
-    <a-mixin id="cube"
-             obj-model="obj: #spaceship-o;mtl:#spaceship-m"
-             buffer="false"
-             rotation="0 90 90"
-             scale="10 10 10"
-             material="color: #167341; roughness: 1.0; metalness: 0.2;"></a-mixin>
+      </a-entity>
+      <a-entity mixin="cube enemy" geometry="primitive: box" material="color: #167341" obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-23.5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575"  scale="7 7 7" spawner-enemy = "mixin: laser2; on: mousedown" cursor animation="property: position; from:-23.5 9 -10; to: -18.5 9 -10; dur: 1500;  dir: alternate; easing: linear; loop:true">
 
-    <a-mixin id="laser"
-             geometry="primitive: box; buffer: false; height: 2; width: 0.1; depth: 0.1"
-             material="color: yellow;"
-             laser-behavior collider></a-mixin>
-   <!-- <a-mixin id="enemy" explode="on: hit"></a-mixin> -->
-</a-assets>
+      </a-entity>
+      <a-entity mixin="cube enemy" geometry="primitive: box"  material="color: #167341" obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl" position="-16 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7" spawner-enemy = "mixin: laser2; on: mousedown" cursor animation="property: position; from:-16 9 -10; to: -10 9 -10; dur: 1500;  dir: alternate; easing: linear; loop:true">
 
-    <script>
-        var titleEl = document.querySelector('.title-screen');
-        var endEl = document.querySelector('.end-screen');
-        var enemies = document.querySelectorAll('[mixin="cube enemy"]');
-        var deadEnemies = [];
-        var scoreEl = document.querySelector('.score');
-        var score = 0;
-        var increaseCounter = function(e) {
-            var enemy = e.currentTarget;
-            if (deadEnemies.indexOf(enemy) != -1) { return; }
-            deadEnemies.push(enemy);
-            score+=1;
-            scoreEl.innerHTML = 'Score: ' + score;
-            if (enemies.length === deadEnemies.length) {
-                endEl.style.display = 'block';
-            }
-        }
-        titleEl.addEventListener('click', function() { titleEl.style.display = 'none'; });
-        enemies = Array.prototype.slice.call(enemies);
-        enemies.forEach(function(enemyEl) {
-            enemyEl.addEventListener('hit', increaseCounter);
-        });
+      </a-entity>
 
-    </script>
 
-</a-scene>
-</body>
+      <a-entity mixin="cube enemy" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-10.5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7" spawner-enemy = "mixin: laser2; on: mousedown" cursor animation="property: position; from:-10.5 9 -10; to: 0 9 -10; dur: 1500;  dir: alternate; easing: linear; loop:true">
+
+      </a-entity>
+      <a-entity mixin="cube enemy"   material="color: #167341" obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="-5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7" spawner-enemy = "mixin: laser2; on: mousedown" cursor animation="property: position; from:-5 9 -10; to: 3 9 -10; dur: 1500;  dir: alternate; easing: linear; loop:true">
+      </a-entity>
+      <a-entity mixin="cube enemy" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="0 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7" spawner-enemy = "mixin: laser2; on: mousedown" cursor animation="property: position; from:0 9 -10; to: 10 9 -10; dur: 1500;  dir: alternate; easing: linear; loop:true">
+
+      </a-entity>
+        <a-entity mixin="cube enemy"  material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="9 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7" spawner-enemy = "mixin: laser2; on: mousedown" cursor animation="property: position; from:9 9 -10; to: 20 9 -10; dur: 1500;  dir: alternate; easing: linear; loop:true"></a-entity>
+      <a-entity mixin="cube enemy" material="color: #167341"  obj-model="obj: #enemy-o;mtl:obj/Nave-inimiga/materials.mtl"  position="15.5 9 -10"  rotation="13.34934366875305 -13.39689916574891 1.1814389735597575" scale="7 7 7" spawner-enemy = "mixin: laser2; on: mousedown" cursor animation="property: position; from:15.5 9 -10; to: 23 9 -10; dur: 1500;  dir: alternate; easing: linear; loop:true"></a-entity>
+
+      <a-entity id="jogador" mixin="cube enemy"
+                wasd-controls="acceleration: 400; adEnabled: false"
+                position="0 -10 -10"
+                spawner="mixin: laser; on: mousedown"
+                cursor></a-entity>
+    </a-scene>
+    <script src="js/index.js"></script>
+  </body>
 </html>
